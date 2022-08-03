@@ -82,6 +82,7 @@ THIRD_PARTY_APPS = [
 
 LOCAL_APPS = [
     "goldentravel.users",
+    "goldentravel.tours",
     # Your stuff: custom apps go here
 ]
 # https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps
@@ -186,6 +187,7 @@ TEMPLATES = [
                 "django.template.context_processors.tz",
                 "django.contrib.messages.context_processors.messages",
                 "goldentravel.users.context_processors.allauth_settings",
+                "goldentravel.contrib.context.banner_context.get_banner_processor",
             ],
         },
     }

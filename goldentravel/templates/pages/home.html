@@ -1,1 +1,44 @@
-{% extends "base.html" %}
+{% extends 'base.html' %}
+{% load static i18n %}
+
+
+{% block extra_head %}
+  <link rel="stylesheet" href="{% static 'css/home.css' %}">
+{% endblock %}
+
+
+{% block content %}
+  {% for tour in banner %}
+    <!--{% cycle 1 '' as a %} -->
+    {% if a != 1 %}
+      <div class="main">
+        <div class="img-box">
+          <img src="{{ tour.tour.main_image.url }}"
+               alt="{{ tour.tour.short_desctions }}">
+        </div>
+        <div class="info-box">
+          <h1>{{ tour.tour.title }}</h1>
+          <p>{{ tour.tour.description }}</p>
+          <button><a href="{% url 'tours:detail' tour.tour.id %}">click me</a></button>
+        </div>
+      </div>
+    {% else %}
+      <div class="main{{ a }}">
+        <div class="info-box{{ a }}">
+          <h1>{{ tour.tour.title }}</h1>
+          <p>{{ tour.tour.description }}</p>
+          <button><a href="{% url 'tours:detail' tour.tour.id %}">click me</a></button>
+        </div>
+        <div class="img-box{{ a }}">
+          <img src="{{ tour.tour.main_image.url }}"
+               alt="{{ tour.tour.short_desctions }}">
+        </div>
+      </div>
+    {% endif %}
+    </div>
+  {% endfor %}
+{% endblock %}
+
+{% block extra_footer_js %}
+  <script src="{% static 'js/home.js' %}"></script>
+{% endblock %}

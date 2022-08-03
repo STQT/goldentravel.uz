@@ -1,0 +1,84 @@
+{% extends "base.html" %}
+{% load static i18n %}
+
+{% block extra_head %}
+  <link rel="stylesheet" href="{% static 'css/detail.css' %}">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+{% endblock %}
+
+{% block content %}
+  <section>
+    <div class="container">
+      <div class="big-screen">
+        <img src="{{ obj.main_image.url }}" alt="{{ obj.short_desctions }}">
+        <div>
+          <h1>{{ obj.title }}</h1>
+          <p class="sam-text">{{ obj.description }}</p>
+        </div>
+      </div>
+      <div class="slides">
+        {% for shot in obj.shots.all %}
+          <img src="{{ shot.image.url }}"
+               alt="{{ shot.tour.title }}-{{ forloop.counter }}">
+        {% endfor %}
+      </div>
+    </div>
+
+    {#       <div class="container1">#}
+    {#        <div class="big-screen1">#}
+    {##}
+    {#        <img src="./imgs/xiva-shahri-0.0-jpeg.jpeg"#}
+    {#        alt="">#}
+    {#          <div>#}
+    {#            <h1>lorem</h1>#}
+    {#            <p class="sam-text1">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quidem natus molestiae nam magnam quia placeat ipsum accusantium aspernatur animi nisi voluptatem blanditiis harum sit perferendis maiores voluptas eos fuga recusandae, commodi aliquam sequi deserunt assumenda dignissimos voluptate. Nobis, reiciendis inventore. Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas qui maiores ipsum cupiditate, vitae dolorem a labore nobis vel numquam praesentium quasi expedita aspernatur nam rem accusamus, illo molestiae error itaque rerum libero unde recusandae architecto? Beatae, quos, assumenda reprehenderit omnis ipsum ad illum ducimus debitis consectetur commodi, repellendus adipisci.</p>#}
+    {#           </div>#}
+    {##}
+    {##}
+    {#        </div>#}
+    {##}
+    {#        <div class="slides1">#}
+    {#          <img src="./imgs/buhor-masjid-2-.jpg  "#}
+    {#          alt="">#}
+    {#          <img src="./imgs/xiva-shahri-0-jpg.jpg" alt="">#}
+    {#          <img src="./imgs/xiva-shahri-3-043.jpeg "#}
+    {#          alt="">#}
+    {#          <img src="./imgs/xiva-shahri-0-jpg.jpg" alt="">#}
+    {#          <img src="./imgs/xiva-shahri-3-043.jpeg "#}
+    {#          alt="">#}
+    {##}
+    {##}
+    {#      </div>#}
+    {#    </div>#}
+
+    <button type="button" class="modal-btn btn-warning  px-5 py-3 " data-bs-toggle="modal" data-bs-target="#exem">send
+    </button>
+    <div class="modal" id="exem" tabindex="-1">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Modal title</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <p>Formmi to'ldiring</p>
+            <label for="fname" class="form-label ">First Name:</label>
+            <input type="text" id="fname" name="fname" class="form-control">
+            <label for="lname" class="form-label">Last Name:</label>
+            <input type="text" id="lname" name="lname" class="form-control">
+            <label for="email" class="form-label">Email:</label>
+            <input type="text" name="amail" id="" class="form-control">
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary">Save changes</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+{% endblock %}
+
+{% block extra_footer_js %}
+  {% static 'js/listView.js' %}
+{% endblock %}
