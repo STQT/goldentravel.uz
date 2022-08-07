@@ -1,6 +1,9 @@
 {% extends 'base.html' %}
 {% load static i18n %}
 
+{% block title %}
+  {% trans 'Главная - Goldentravel.uz' %}
+{% endblock %}
 
 {% block extra_head %}
   <link rel="stylesheet" href="{% static 'css/home.css' %}">
@@ -19,7 +22,7 @@
         <div class="info-box">
           <h1>{{ tour.tour.title }}</h1>
           <p>{{ tour.tour.description }}</p>
-          <button><a href="{% url 'tours:detail' tour.tour.id %}">click me</a></button>
+          <button><a href="{% url 'tours:detail' tour.tour.id %}">{% translate 'Подробно' %}</a></button>
         </div>
       </div>
     {% else %}
@@ -27,7 +30,7 @@
         <div class="info-box{{ a }}">
           <h1>{{ tour.tour.title }}</h1>
           <p>{{ tour.tour.description }}</p>
-          <button><a href="{% url 'tours:detail' tour.tour.id %}">click me</a></button>
+          <button><a href="{% url 'tours:detail' tour.tour.id %}">{% translate 'Подробно' %}</a></button>
         </div>
         <div class="img-box{{ a }}">
           <img src="{{ tour.tour.main_image.url }}"

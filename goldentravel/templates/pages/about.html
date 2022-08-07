@@ -1,1 +1,62 @@
 {% extends "base.html" %}
+{% load static i18n %}
+
+{% block extra_head %}
+  <link rel="stylesheet" href="{% static 'css/about.css' %}">
+  <link rel="stylesheet" href="{% static 'css/home.css' %}">
+{% endblock %}
+
+{% block content %}
+      <!--Information start-->
+
+    <div class="info">
+        <div class="il">
+        <h1>Samarqand haqida ma'lumotlar</h1>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Cupiditate sapiente ducimus animi ullam delectus asperiores iusto, amet ad vero! Debitis laboriosam odio corporis perferendis impedit alias sit, tempore in qui laudantium nesciunt obcaecati iste blanditiis voluptatibus praesentium, aut deserunt nobis nostrum et! Reprehenderit necessitatibus sunt, deserunt exercitationem quidem nisi, autem facilis ipsam quas harum quos maiores quaerat enim vero dolorem quia soluta optio consectetur animi alias nesciunt. Excepturi, repudiandae reiciendis quae quidem atque sapiente perspiciatis provident cupiditate mollitia fugit, necessitatibus, nisi incidunt? Libero est sapiente quae accusantium doloribus incidunt voluptatibus sint eligendi aut dicta laborum, qui eveniet! Iure, libero porro.</p>
+        </div>
+        <button class="btn btn-outline-danger px-4 py-3 my-4 mx-auto" id="btn">Click me</button>
+        <div class="ich" id="ich">
+        <h1>Buxoro haqida ma'lumotlar</h1>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quae ut quidem ab aspernatur distinctio! Similique, beatae? Tenetur molestiae nesciunt cupiditate fugiat numquam consequatur, architecto mollitia corporis exercitationem esse sint. Commodi rem suscipit cum ex laborum quo laudantium, in enim itaque, ratione impedit delectus repellat nam molestias atque pariatur velit doloremque accusamus. Deserunt exercitationem veniam alias eum voluptatibus, sunt numquam modi voluptate vel. Minima expedita repudiandae beatae reprehenderit a impedit culpa, iure quo voluptatum vero asperiores, aut similique, possimus ipsum animi suscipit id illum corporis esse ab eum tenetur! Repellat, amet ab? Possimus magnam illum quibusdam esse quam alias commodi maiores?</p>
+        </div>
+        <button class="btn btn-outline-danger px-4 py-3 my-5     mx-auto" id="btn1">Click me</button>
+        <div class="ich1">
+        <h1>Xiva haqida ma'lumotlar</h1>
+        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Aspernatur quos quae incidunt pariatur nemo tempora voluptates nulla repellendus. Est tenetur accusantium consequuntur quos quia ratione ut harum esse non, sed ad iure cupiditate soluta possimus. Nesciunt possimus blanditiis delectus, numquam eius laboriosam molestiae totam quidem, voluptate veniam eligendi deserunt. Enim fugit iure impedit dolorem vitae consequatur. Mollitia delectus, itaque dolores asperiores dolorum necessitatibus tempore cumque voluptates, voluptatum laudantium neque. Quasi id magni expedita. Possimus cupiditate atque impedit hic, quidem consequuntur odio ducimus voluptatibus tempore deserunt nam, consectetur doloremque veritatis iure amet ab perferendis molestias maxime sapiente reiciendis suscipit temporibus nobis!</p>
+        </div>
+    </div>
+
+    <!--Information end-->
+
+    <!--Modal html-->
+
+    <button type="button" class="modal-btn btn-warning text-dark  px-5 py-3" style="margin-left: 690px; margin-top:100px;" data-bs-toggle="modal" data-bs-target="#exem">send</button>
+  <div class="modal mt-5"  id="exem" tabindex="-1">
+    <div class="modal-dialog">
+      <div class="modal-content mt-5">
+        <div class="modal-header">
+          <h5 class="modal-title">Modal title</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <p>Formani to'ldiring</p>
+          <label for="fname" class="form-label mt-1">First Name:</label>
+          <input type="text" id="fname" name="fname" class="form-control">
+          <label for="lname" class="form-label mt-2">Last Name:</label>
+          <input type="text" id="lname" name="lname" class="form-control">
+          <label for="email" class="form-label mt-2">Email:</label>
+          <input type="text" name="email" id="email" class="form-control" />
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary">Save changes</button>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}
+
+{% block extra_footer_js %}
+  <script src="{% static 'js/home.js' %}"></script>
+  <script src="{% static 'js/detailView.js' %}"></script>
+{% endblock %}
