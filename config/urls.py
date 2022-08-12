@@ -17,6 +17,7 @@ urlpatterns = [
     path("accounts/", include("allauth.urls")),
     # Your stuff: custom urls includes go here
     path("tours/", include("goldentravel.tours.urls", namespace="tours")),
+    path("app/", include("goldentravel.applications.urls", namespace="applications")),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 

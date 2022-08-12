@@ -89,32 +89,6 @@ nav .list .list-item a:hover::after {
   position: relative;
 }
 
-.container .slides {
-
-  width: 560px;
-  display: flex;
-  justify-content: space-between;
-  position: absolute;
-  top: 455px;
-  left: 0;
-
-
-}
-
-.container .slides img {
-
-  width: 22%;
-  height: 80px;
-
-
-  object-fit: cover;
-  cursor: pointer;
-}
-
-.container .slides img:hover {
-  filter: grayscale();
-}
-
 .big-screen {
   position: absolute;
   top: 0;

@@ -22,13 +22,26 @@ CACHES = {
         "LOCATION": "",
     }
 }
+print("@@@@@@@@@@@@", APPS_DIR)
+MEDIA_ROOT = str(APPS_DIR / "media")
+STATIC_ROOT = str(ROOT_DIR / "staticfiles")
 
 # EMAIL
 # ------------------------------------------------------------------------------
 # https://docs.djangoproject.com/en/dev/ref/settings/#email-backend
-EMAIL_BACKEND = env(
-    "DJANGO_EMAIL_BACKEND", default="django.core.mail.backends.console.EmailBackend"
-)
+# EMAIL_BACKEND = env(
+#     "DJANGO_EMAIL_BACKEND", default="django.core.mail.backends.console.EmailBackend"
+# )
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.yandex.ru'
+EMAIL_PORT = 465
+EMAIL_HOST_USER = 'kaireke.sultan@yandex.ru'
+EMAIL_HOST_PASSWORD = 'kvifwbwggcevlucf'
+EMAIL_USE_TLS = False
+EMAIL_USE_SSL = True
+SERVER_EMAIL = EMAIL_HOST_USER
+DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
+# DEFAULT_FROM_EMAIL = 'Goldentravel Uzbekistan <contact@goldentravel.uz>'
 
 # WhiteNoise
 # ------------------------------------------------------------------------------

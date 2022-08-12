@@ -3,6 +3,7 @@ Base settings to build other settings files upon.
 """
 from pathlib import Path
 from dotenv import load_dotenv
+from django.contrib.messages import constants as messages
 
 import environ
 
@@ -78,11 +79,13 @@ THIRD_PARTY_APPS = [
     "allauth",
     "allauth.account",
     "allauth.socialaccount",
+
 ]
 
 LOCAL_APPS = [
     "goldentravel.users",
     "goldentravel.tours",
+    "goldentravel.applications"
     # Your stuff: custom apps go here
 ]
 # https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps
@@ -282,3 +285,13 @@ SOCIALACCOUNT_FORMS = {"signup": "goldentravel.users.forms.UserSocialSignupForm"
 
 # Your stuff...
 # ------------------------------------------------------------------------------
+SITE_URL = 'http://localhost:8000'
+
+
+MESSAGE_TAGS = {
+        messages.DEBUG: 'alert-secondary',
+        messages.INFO: 'alert-info',
+        messages.SUCCESS: 'alert-success',
+        messages.WARNING: 'alert-warning',
+        messages.ERROR: 'alert-danger',
+ }
