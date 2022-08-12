@@ -16,25 +16,19 @@ from goldentravel.applications.models import Application
 
 def detail_view(request, *args, **kwargs):
     if request.method == 'GET':
-        try:
-            obj = Tours.objects.get(pk=kwargs['pk'])
-            return render(request, 'tour/detail.html', {"obj": obj,
-                                                       "form": TourForm(obj)})
-        except Tours.DoesNotExist:
-            messages.error(request, _('Данный тур не найден'))
-            return redirect(reverse('home'))
+        obj = Tours.objects.filter(pk=kwargs['pk']).first()
+        return render(request, 'tour/detail.html', {"obj": obj,
+                                                    "form": TourForm(obj)})
+
     elif request.method == 'POST':
-        try:
-            obj = Tours.objects.get(pk=kwargs['pk'])
-        except Tours.DoesNotExist:
-            messages.error(request, _('Данный тур не найден'))
-            return redirect(reverse('home'))
+        obj = Tours.objects.filter(pk=kwargs['pk'])
         form = TourForm(obj, request.POST)
         if form.is_valid():
             email = form.cleaned_data['email']
             fullname = form.cleaned_data['fullname']
             application_obj = Application.objects.create(tour=obj, email=email)
-            send_mail("Qale ishlar", "MANA SHU SMS {} {}".format(fullname, application_obj), settings.EMAIL_HOST_USER, [email])
+            send_mail("Qale ishlar", "MANA SHU SMS {} {}".format(fullname, application_obj), settings.EMAIL_HOST_USER,
+                      [email])
             messages.success(request, _("Ваша заявка принята, в ближайшее время Вам отправят сммс по почте"))
             return redirect(reverse('tours:detail', kwargs={'pk': obj.pk}))
         else:
