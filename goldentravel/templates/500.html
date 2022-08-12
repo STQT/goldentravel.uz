@@ -1,11 +1,20 @@
 {% extends "base.html" %}
+{% load static i18n %}
 
 {% block title %}Server Error{% endblock %}
 
+{% block extra_head %}
+  <link rel="stylesheet" href="{% static 'css/500.css' %}">
+
+{% endblock %}
+
 {% block content %}
-<h1>Ooops!!! 500</h1>
 
-<h3>Looks like something went wrong!</h3>
 
-<p>We track these errors automatically, but if the problem persists feel free to contact us. In the meantime, try refreshing.</p>
+  <p class="info">Oh No! Cody is sad! Internally sad!</p>
+  <h1 class="internal"><span class="five">5</span><span class="zero">0</span><span class="zero">0</span></h1>
+  <footer class="link"><a href="{% url 'home' %}">{% trans "Главная" %}</a></footer>
+
+
+
 {% endblock content %}
