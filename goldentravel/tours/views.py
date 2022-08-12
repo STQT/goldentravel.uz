@@ -21,7 +21,7 @@ def detail_view(request, *args, **kwargs):
                                                     "form": TourForm(obj)})
 
     elif request.method == 'POST':
-        obj = Tours.objects.filter(pk=kwargs['pk'])
+        obj = Tours.objects.filter(pk=kwargs['pk']).first()
         form = TourForm(obj, request.POST)
         if form.is_valid():
             email = form.cleaned_data['email']
