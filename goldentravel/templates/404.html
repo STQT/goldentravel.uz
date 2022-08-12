@@ -1,12 +1,15 @@
-{% extends "base.html" %}
-
-{% block title %}{% trans "Не существующая страница" %}{% endblock %}
-
-{% block extra_head %}
-  <link rel="stylesheet" href="{% static 'css/404.css' %}">
-{% endblock %}
-
-{% block content %}
+<!doctype html>
+{% load static i18n %}
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>{% trans "Ошибка 404" %}</title>
+   <link rel="stylesheet" href="{% static 'css/404.css' %}">
+</head>
+<body>
   <div class="wrapper"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080">
   <title>404</title>
   <g id="Layer_12 yellow-back-fig" data-name="Layer 12">
@@ -135,14 +138,7 @@
   </g>
 </svg>
 </div>
-    <script src="https://cpwebassets.codepen.io/assets/common/stopExecutionOnTimeout-1b93190375e9ccc259df3a57c1abc0e64599724ae30d7ea4c6877eb615f89387.js"></script>
+</body>
+</html>
 
 
-      <script id="rendered-js">
-// As always, Firefox users should enable 'transform-box' on 'about:config' page of browser
-//# sourceURL=pen.js
-    </script>
-
-
-  <p>{% if exception %}{{ exception }}{% else %}This is not the page you were looking for.{% endif %}</p>
-{% endblock content %}

@@ -25,9 +25,33 @@
   {% block extra_head %}
     <!-- Extra JavaScript -->
   {% endblock %}
+  {% if messages %}
+  <script>
+    $(document).ready(function(){
+        $("#myModal1").modal('show');
+    });
+  </script>
+  {% endif %}
 </head>
 <body>
+<div id="myModal1" class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Subscribe our Newsletter</h5>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                {% for message in messages %}
+                  <p>{{ message }}</p>
+                  {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+
 <!--Navbar start-->
+
 
 <nav>
   <img src="{% static 'imgs/logo.jpg' %}" alt="">
@@ -36,7 +60,6 @@
     {% for city in banner %}
       <li class="list-item"><a href="{% url 'tours:detail' city.tour.id %}">{{ city.tour.city }}</a></li>
     {% endfor %}
-
     <li class="list-item"><a href="#">{% blocktrans %}О нас{% endblocktrans %}</a></li>
     <li class="list-item"><a href="#">Ticket</a></li>
     <i class="fa-solid fa-x delete"></i>
@@ -115,7 +138,17 @@
     </div>
   </header>
 {% endif %}
+<div class="dropdown show">
+  <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    Dropdown link
+  </a>
 
+  <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+    <a class="dropdown-item" href="#">Action</a>
+    <a class="dropdown-item" href="#">Another action</a>
+    <a class="dropdown-item" href="#">Something else here</a>
+  </div>
+</div>
 {% block content %}
   Shu yerda content bo'ladi
 {% endblock %}
@@ -128,17 +161,13 @@
   <div class="foot-img">
     <img src="{% static 'imgs/logo.jpg' %}" alt="" class="logo">
     <div class="logo-imgs">
-      <img src="{% static 'imgs/channel.jpg' %}" alt="">
-      <img src="{% static 'imgs/unnamed.png' %}" alt="">
-      <img src="{% static 'imgs/instagram.png' %}" alt="">
-      <img
+      <a href=""><img src="{% static 'imgs/channel.jpg' %}" alt=""></a>
+      <a href=""><img src="{% static 'imgs/unnamed.png' %}" alt=""></a>
+      <a href=""><img src="{% static 'imgs/instagram.png' %}" alt=""></a>
+      <a href=""><img
         src="{% static 'imgs/facebook.jpg' %}"
-        alt="">
+        alt=""></a>
     </div>
-    <!-- <i class="fa-brands fa-youtube"></i>
-    <i class="fa-brands fa-telegram"></i>
-    <i class="fa-brands fa-instagram"></i>
-    <i class="fa-brands fa-facebook-f"></i> -->
   </div>
   <div class="foot-flex">
     <div>
@@ -146,23 +175,23 @@
       <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Sequi, excepturi ducimus quae nisi!</p>
     </div>
     <div>
-      <h3>connection</h3>
+      <h3>{% trans "Контакты" %}</h3>
       <p class="phone phone1">
         <img src="{% static 'imgs/phone.jpg' %}" alt=""> <span> +998(99)-444-44-44</span>
       </p>
       <p class="phone"><img class="gmi" src="{% static 'imgs/mail-logo.png' %}" alt="">
-        <span class="span1"> sayohat.uz@gmail.com</span></p>
+        <span class="span1"> info@goldentravel.uz</span></p>
 
 
     </div>
     <div>
-      <h3>Newsletter</h3>
-      <p>News and information about the touristic options in sayohat.uz.</p>
+      <h3>Yangiliklar</h3>
+      <p>Hamma o'zgarish va yangiliklar ushbu goldentravel.uz saytida bo'ladi</p>
 
     </div>
   </div>
   <div class="foot-hr"></div>
-  <p class="year">© 2018 – 2022 Landeshauptstadt München</p>
+  <p class="year">©2022 - Goldentravel.uz</p>
 </footer>
 
 <!--footer end-->

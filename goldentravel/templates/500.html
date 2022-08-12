@@ -1,20 +1,19 @@
-{% extends "base.html" %}
+<!doctype html>
 {% load static i18n %}
-
-{% block title %}Server Error{% endblock %}
-
-{% block extra_head %}
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
   <link rel="stylesheet" href="{% static 'css/500.css' %}">
-
-{% endblock %}
-
-{% block content %}
-
-
-  <p class="info">Oh No! Cody is sad! Internally sad!</p>
+</head>
+<body>
+<p class="info">Oh No! Cody is sad! Internally sad!</p>
   <h1 class="internal"><span class="five">5</span><span class="zero">0</span><span class="zero">0</span></h1>
   <footer class="link"><a href="{% url 'home' %}">{% trans "Главная" %}</a></footer>
 
+</body>
+</html>
 
-
-{% endblock content %}

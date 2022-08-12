@@ -16,11 +16,19 @@ from goldentravel.applications.models import Application
 
 def detail_view(request, *args, **kwargs):
     if request.method == 'GET':
-        obj = Tours.objects.get(pk=kwargs['pk'])
-        return render(request, 'tour/detail.html', {"obj": obj,
-                                                    "form": TourForm(obj)})
+        try:
+            obj = Tours.objects.get(pk=kwargs['pk'])
+            return render(request, 'tour/detail.html', {"obj": obj,
+                                                       "form": TourForm(obj)})
+        except Tours.DoesNotExist:
+            messages.error(request, _('Данный тур не найден'))
+            return redirect(reverse('home'))
     elif request.method == 'POST':
-        obj = Tours.objects.get(pk=kwargs['pk'])
+        try:
+            obj = Tours.objects.get(pk=kwargs['pk'])
+        except Tours.DoesNotExist:
+            messages.error(request, _('Данный тур не найден'))
+            return redirect(reverse('home'))
         form = TourForm(obj, request.POST)
         if form.is_valid():
             email = form.cleaned_data['email']
@@ -35,9 +43,7 @@ def detail_view(request, *args, **kwargs):
 
 class TourFormView(DetailView):
     def post(self, request, *args, **kwargs):
-        print("@@@@@@@@@@@@@@@@@@@", args, kwargs)
         form = TourForm(request.POST or None)
-        print(form)
         if form.is_valid():
             return redirect('/')
-        return reverse('tours:detail')
+        return reverse('tours:detail', args=args)
