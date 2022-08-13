@@ -1,7 +1,8 @@
 from django.conf import settings
-from django.core.mail import send_mail
+from django.core.mail import EmailMultiAlternatives
 from django.shortcuts import render, redirect
 from django.urls import reverse
+from django.utils.html import strip_tags
 from django.views.generic import DetailView
 from django.contrib import messages
 from django.utils.translation import gettext_lazy as _
@@ -10,8 +11,13 @@ from goldentravel.tours.forms import TourForm
 from goldentravel.tours.models import Tours
 from goldentravel.applications.models import Application
 
+from django.template.loader import render_to_string
 
-# from goldentravel.applications.models import Application
+
+def send_mail_converter(values: dict) -> str:
+    html_content = render_to_string('pages/email.html', values)
+    text_content = strip_tags(html_content)
+    return text_content
 
 
 def detail_view(request, *args, **kwargs):
@@ -27,17 +33,20 @@ def detail_view(request, *args, **kwargs):
             email = form.cleaned_data['email']
             fullname = form.cleaned_data['fullname']
             application_obj = Application.objects.create(tour=obj, email=email)
-            send_mail("Qale ishlar", "MANA SHU SMS {} {}".format(fullname, application_obj), settings.EMAIL_HOST_USER,
-                      [email])
+            html_content = render_to_string('pages/email.html', {"fullname": fullname, "tour": obj,
+                                                                 "app": application_obj})
+            text_content = strip_tags(html_content)
+            msg = EmailMultiAlternatives(subject=_("Подтверждение билета на тур {}").format(obj.city),
+                                         body=text_content,
+                                         from_email=settings.EMAIL_HOST_USER,
+                                         to=[email])
+
+            msg.attach_alternative(html_content, "text/html")
+            msg.send()
+            # send_mail(_("Подтверждение билета на тур {}").format(obj.city),
+            #           "MANA SHU SMS {} {}".format(fullname, application_obj), settings.EMAIL_HOST_USER,
+            #           [email])
             messages.success(request, _("Ваша заявка принята, в ближайшее время Вам отправят сммс по почте"))
             return redirect(reverse('tours:detail', kwargs={'pk': obj.pk}))
         else:
             return render(request, 'tour/detail.html', {"obj": obj, "form": form})
-
-
-class TourFormView(DetailView):
-    def post(self, request, *args, **kwargs):
-        form = TourForm(request.POST or None)
-        if form.is_valid():
-            return redirect('/')
-        return reverse('tours:detail', args=args)

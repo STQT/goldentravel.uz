@@ -9,7 +9,7 @@ class TourForm(forms.Form):
         super().__init__(*args, **kwargs)
         # self.fields['tour'] = forms.fields.Field(disabled=True, initial=)
         self.helper = FormHelper(self)
-        self.helper.form_action = reverse_lazy('tours:detail', args=(obj.id,))
+        self.helper.form_action = reverse_lazy('tours:detail', kwargs={'pk': obj.pk})
         self.helper.form_method = 'POST'
         self.helper.add_input(Submit('submit', "Submit"))
 
