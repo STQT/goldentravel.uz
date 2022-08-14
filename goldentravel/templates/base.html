@@ -56,7 +56,7 @@
 <nav>
   <img src="{% static 'imgs/logo.jpg' %}" alt="">
   <ul class="list">
-    <li class="list-item"><a href="{% url 'home' %}">{% translate 'Главная' %}</a></li>
+    <li class="list-item"><a href="{% url 'tours:home' %}">{% translate 'Главная' %}</a></li>
     {% for city in banner %}
       <li class="list-item"><a href="{% url 'tours:detail' city.tour.id %}">{{ city.tour.city }}</a></li>
     {% endfor %}
@@ -71,7 +71,7 @@
 <!--Navbar end-->
 
 <!--header start-->
-{% url 'home' as home_url %}
+{% url 'tours:home' as home_url %}
 
 {% if banner %}
   <header>

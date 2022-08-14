@@ -50,3 +50,13 @@ def detail_view(request, *args, **kwargs):
             return redirect(reverse('tours:detail', kwargs={'pk': obj.pk}))
         else:
             return render(request, 'tour/detail.html', {"obj": obj, "form": form})
+
+
+def result(request):
+    print(request)
+    return 200
+
+
+def check(request):
+    print(request)
+    return 200

@@ -1,31 +1,30 @@
-<!DOCTYPE html>
 {% load static %}
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Title</title>
-  <link rel="stylesheet" href="https://goldentravel.uz{% static 'css/ticket.css' %}">
-</head>
-<body>
 <h1>Title </h1>
 <div>Kak delishki</div>
 <div class="main">
-        <h4>Your ticket <a href="#">HET - A5131231</a> has been opened </h4>
-        <img src="https://goldentravel.uz{% static "imgs/1614997.png" %}" alt="">
-        <div class="text">
-            <h5>Hello John</h5>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Distinctio porro adipisci laudantium, atque totam repellat at blanditiis animi, aliquid perferendis ex hic.</p>
-            <p>Subject: Server offline, con't boot</p>
-            <p>Priorty: <span>High</span></p>
-            <p>Status: <span>Open</span></p>
-        </div>
-        <a class="text-decoration-none" href="{{ app.url }}"><button class="btn btn-outline-danger py-2 px-4 d-block mx-auto my-4">View Tecket</button></a>
-        <div class="icon my-4">
-        <i class="fa-brands fa-google-plus-g bg-primary text-white" style="border-radius: 100%; padding: 13px 12px; cursor: pointer;"></i>
-        <i class="fa-brands fa-facebook-f bg-danger text-white" style="border-radius: 100%; padding: 13px 15px; cursor: pointer;"></i>
-        <i class="fa-brands fa-twitter bg-success text-white"style="border-radius: 100%; padding: 13px 12px; cursor: pointer;"></i>
-        <i class="fa-brands fa-linkedin-in bg-info text-white"style="border-radius: 100%; padding: 13px 13px; cursor: pointer;"></i>
-        </div>
-    </div>
+  <h4>Your ticket <a href="#">HET - A5131231</a> has been opened </h4>
+  <img src="https://goldentravel.uz{% static "imgs/1614997.png" %}" alt="">
+  <div class="text">
+    <h5>Hello John</h5>
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Distinctio porro adipisci laudantium, atque totam
+      repellat at blanditiis animi, aliquid perferendis ex hic.</p>
+    <p>Subject: Server offline, con't boot</p>
+    <p>Priorty: <span>High</span></p>
+    <p>Status: <span>Open</span></p>
+  </div>
+  <a class="text-decoration-none" href="{{ app.url }}">
+    <button class="btn btn-outline-danger py-2 px-4 d-block mx-auto my-4">View Tecket</button>
+  </a>
+  <div class="icon my-4">
+    <i class="fa-brands fa-google-plus-g bg-primary text-white"
+       style="border-radius: 100%; padding: 13px 12px; cursor: pointer;"></i>
+    <i class="fa-brands fa-facebook-f bg-danger text-white"
+       style="border-radius: 100%; padding: 13px 15px; cursor: pointer;"></i>
+    <i class="fa-brands fa-twitter bg-success text-white"
+       style="border-radius: 100%; padding: 13px 12px; cursor: pointer;"></i>
+    <i class="fa-brands fa-linkedin-in bg-info text-white"
+       style="border-radius: 100%; padding: 13px 13px; cursor: pointer;"></i>
+  </div>
+</div>
 </body>
 </html>

@@ -47,6 +47,7 @@
 
 
   </section>
+<button onclick="pay(100)">Оплатить</button>
 
 {% endblock %}
 
@@ -55,4 +56,55 @@
 {% block extra_footer_js %}
   <script src="{% static 'js/listView.js' %}">
   </script>
+  <script>
+    (function (p, a, y, b, o, x) {
+      o = p.createElement(a);
+      x = p.getElementsByTagName(a)[0];
+      o.async = 1;
+      o.src = 'https://widget.paybox.money/v1/paybox/pbwidget.js?' + 1 * new Date();
+      x.parentNode.insertBefore(o, x);
+    })(document, 'script');
+
+    function pay(amount) {
+      var data = {
+        token: "Eyq0azWnF7ycyEUE",
+        payment: {
+          order: "1",
+          amount: "1000",
+          currency: "UZS",
+          description: "Описание заказа",
+          expires_at: "2022-12-12 00:00:00",
+          options: {
+            callbacks: {
+              result_url: "https://goldentravel.uz/result",
+              check_url: "https://goldentravel.uz/check"
+            },
+            custom_params: {},
+            user: {
+              email: "user@test.com",
+            },
+            receipt_positions: [
+              {
+                count: 1,
+                name: "{{obj.title}}",
+                tax_type: 3,
+                price: 1000
+              }
+            ]
+          }
+        },
+        successCallback: function (payment) {
+          alert('Заказ номер ' + payment.order + ' успешно оплачен')
+        },
+        errorCallback: function (payment) {
+          alert('Произошла ошибка при попытке оплаты заказа номер ' + payment.order)
+        }
+      }
+
+      var paybox = new PayBox(data);
+      paybox.create();
+    }
+
+  </script>
+
 {% endblock %}
