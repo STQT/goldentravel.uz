@@ -3,7 +3,6 @@ from django.core.mail import EmailMultiAlternatives
 from django.shortcuts import render, redirect
 from django.urls import reverse
 from django.utils.html import strip_tags
-from django.views.generic import DetailView
 from django.contrib import messages
 from django.utils.translation import gettext_lazy as _
 
@@ -12,6 +11,7 @@ from goldentravel.tours.models import Tours
 from goldentravel.applications.models import Application
 
 from django.template.loader import render_to_string
+from goldentravel.utils.init_payment import send_request
 
 
 def send_mail_converter(values: dict) -> str:
@@ -23,8 +23,10 @@ def send_mail_converter(values: dict) -> str:
 def detail_view(request, *args, **kwargs):
     if request.method == 'GET':
         obj = Tours.objects.filter(pk=kwargs['pk']).first()
+        pg_sig = send_request(obj.id, obj.amount, obj.title)
         return render(request, 'tour/detail.html', {"obj": obj,
-                                                    "form": TourForm(obj)})
+                                                    "form": TourForm(obj),
+                                                    "pg_sig": pg_sig})
 
     elif request.method == 'POST':
         obj = Tours.objects.filter(pk=kwargs['pk']).first()

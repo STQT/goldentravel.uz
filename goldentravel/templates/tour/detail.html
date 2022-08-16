@@ -47,7 +47,7 @@
 
 
   </section>
-<button onclick="pay(100)">Оплатить</button>
+  <button onclick="pay(100)">Оплатить</button>
 
 {% endblock %}
 
@@ -65,39 +65,21 @@
       x.parentNode.insertBefore(o, x);
     })(document, 'script');
 
+  </script>
+  <script>
     function pay(amount) {
       var data = {
         token: "ri6dL6YxeAIquGwR5tP3DdckM1L9CZBu",
         payment: {
-          order: "1",
-          amount: "1000",
-          currency: "UZS",
-          description: "Описание заказа",
-          expires_at: "2022-12-12 00:00:00",
-          options: {
-            callbacks: {
-              result_url: "https://goldentravel.uz/result",
-              check_url: "https://goldentravel.uz/check"
-            },
-            custom_params: {},
-            user: {
-              email: "user@test.com",
-            },
-            receipt_positions: [
-              {
-                count: 1,
-                name: "{{obj.title}}",
-                tax_type: 3,
-                price: 1000
-              }
-            ]
-          }
+          amount: amount,
+          language: 'ru', // Язык виджета
+          description: 'Описание заказа',
         },
         successCallback: function (payment) {
-          alert('Заказ номер ' + payment.order + ' успешно оплачен')
+          console.log(payment) // Данные о платеже
         },
         errorCallback: function (payment) {
-          alert('Произошла ошибка при попытке оплаты заказа номер ' + payment.order)
+          console.log(payment) // Данные о платеже
         }
       }
 

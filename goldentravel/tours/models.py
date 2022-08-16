@@ -10,7 +10,7 @@ class Tours(models.Model):
     description = models.TextField(_('Полное описание'))
     main_image = models.ImageField(upload_to="tours", verbose_name=_("Основное изображение"))
     city = models.CharField(max_length=100, verbose_name=_("Город"))
-
+    amount = models.FloatField(_('Стоимость'), default=0)
     def __str__(self):
         return self.title
 
