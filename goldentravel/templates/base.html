@@ -22,32 +22,30 @@
         integrity="sha512-1sCRPdkRXhBV2PBLUdRb4tMg1w2YPf37qatUFeS7zlBy7jJI8Lf4VHwWfZZfpXtYSLy85pkm9GaYVYMfw5BC1A=="
         crossorigin="anonymous" referrerpolicy="no-referrer"/>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <link rel="stylesheet" href="{% static 'css/home.css' %}">
   {% block extra_head %}
     <!-- Extra JavaScript -->
   {% endblock %}
   {% if messages %}
-  <script>
-    $(document).ready(function(){
+    <script>
+      $(document).ready(function () {
         $("#myModal1").modal('show');
-    });
-  </script>
+      });
+    </script>
   {% endif %}
 </head>
 <body>
 <div id="myModal1" class="modal fade">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title">Subscribe our Newsletter</h5>
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
-            </div>
-            <div class="modal-body">
-                {% for message in messages %}
-                  <p>{{ message }}</p>
-                  {% endfor %}
-            </div>
-        </div>
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-body">
+        {% for message in messages %}
+          <p>{{ message }}</p>
+        {% endfor %}
+      </div>
+    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">{% trans "Закрыть" %}</button>
     </div>
+  </div>
 </div>
 
 <!--Navbar start-->
@@ -112,7 +110,7 @@
           {% elif forloop.counter == 1 %}
             <div class="carousel-item active">
               <img src="{{ b.banner_image.url }}" alt="...">
-                <h1 class="text text1">{{ b.tour.title }}</h1>
+              <h1 class="text text1">{{ b.tour.title }}</h1>
               <p class="in">{{ b.tour.short_desctions }}</p>
             </div>
           {% else %}

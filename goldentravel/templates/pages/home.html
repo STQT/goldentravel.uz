@@ -5,10 +5,6 @@
   {% trans 'Главная - Goldentravel.uz' %}
 {% endblock %}
 
-{% block extra_head %}
-  <link rel="stylesheet" href="{% static 'css/home.css' %}">
-{% endblock %}
-
 
 {% block content %}
   {% for tour in banner %}
@@ -38,7 +34,6 @@
         </div>
       </div>
     {% endif %}
-    </div>
   {% endfor %}
 {% endblock %}
 

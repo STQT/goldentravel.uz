@@ -6,7 +6,7 @@ from .models import Application
 
 @admin.register(Application)
 class ApplicationAdmin(admin.ModelAdmin):
-    list_display = ["get_tour_title", "email"]
+    list_display = ["get_tour_title", "email", "created_at"]
 
     @display(ordering='tour__title', description='Тур')
     def get_tour_title(self, obj):

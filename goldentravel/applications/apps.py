@@ -3,7 +3,7 @@ from django.utils.translation import gettext_lazy as _
 
 
 class ApplicationsConfig(AppConfig):
-    default_auto_field = 'django.db.models.BigAutoField'
+    default_auto_field = 'django.db.models.AutoField'
     name = 'goldentravel.applications'
     verbose_name = _("Заявки")
 

@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block content %}
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6 col-sm-6 offset-md-3 offset-sm-3">
+        <h1 style="color: green;"><b>{% trans "Успешно оплачено✅" %}</b></h1>
+        <h3>{% blocktrans %} Детали по вашим покупкам отправлены в почту {% endblocktrans %}</h3>
+        <p><b>{{ payment.application.fullname }}, </b>{% blocktrans %}пожалуйста проверьте почту:{% endblocktrans %}
+         {{ payment.application.email }} </p>
+        <!-- Creating a button -->
+        <div class="align-center">{% blocktrans %}Вы автоматически перенаправитесь в главную страницу через 5 секунд
+        {% endblocktrans %}</div>
+        <div class="redirect">
+          <button class="btn btn-success todoitem" type="button">{% blocktrans %}Вернуться к покупкам{% endblocktrans %}</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Script which will redirect
+       us to another page    -->
+    <script>
+      // click event on button
+
+      $(".todoitem").click(function () {
+        $(".redirect").text("{% trans "Перенаправление...." %}");
+        let delay = 1000;
+        // storing url and time
+        let url = "{% url 'tours:home' %}";
+        setTimeout(function () {
+          location = url;
+        }, delay)
+      })
+    </script>
+    <script>
+
+      function Redirect() {
+        window.location = "{% url 'tours:home' %}";
+      }
+      setTimeout('Redirect()', 6000);
+    </script>
+{% endblock %}
+
+
+{% block extra_footer_js %}
+
+
+{% endblock %}

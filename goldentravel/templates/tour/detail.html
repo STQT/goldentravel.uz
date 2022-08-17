@@ -2,9 +2,7 @@
 {% load static i18n %}
 {% load crispy_forms_tags %}
 
-{% block extra_head %}
-  <link rel="stylesheet" href="{% static 'css/home.css' %}">
-{% endblock %}
+
 
 {% block content %}
   <section>
@@ -44,10 +42,7 @@
         </div>
       </div>
     </div>
-
-
   </section>
-  <button onclick="pay(100)">Оплатить</button>
 
 {% endblock %}
 
@@ -56,37 +51,4 @@
 {% block extra_footer_js %}
   <script src="{% static 'js/listView.js' %}">
   </script>
-  <script>
-    (function (p, a, y, b, o, x) {
-      o = p.createElement(a);
-      x = p.getElementsByTagName(a)[0];
-      o.async = 1;
-      o.src = 'https://widget.paybox.money/v1/paybox/pbwidget.js?' + 1 * new Date();
-      x.parentNode.insertBefore(o, x);
-    })(document, 'script');
-
-  </script>
-  <script>
-    function pay(amount) {
-      var data = {
-        token: "ri6dL6YxeAIquGwR5tP3DdckM1L9CZBu",
-        payment: {
-          amount: amount,
-          language: 'ru', // Язык виджета
-          description: 'Описание заказа',
-        },
-        successCallback: function (payment) {
-          console.log(payment) // Данные о платеже
-        },
-        errorCallback: function (payment) {
-          console.log(payment) // Данные о платеже
-        }
-      }
-
-      var paybox = new PayBox(data);
-      paybox.create();
-    }
-
-  </script>
-
 {% endblock %}
