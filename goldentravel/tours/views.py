@@ -1,7 +1,7 @@
 from django.conf import settings
 from django.core.mail import EmailMultiAlternatives
-from django.http import HttpResponseRedirect, HttpResponse
-from django.shortcuts import render, redirect
+from django.http import HttpResponseRedirect
+from django.shortcuts import render
 from django.urls import reverse
 from django.utils.html import strip_tags
 from django.contrib import messages
@@ -27,8 +27,7 @@ def detail_view(request, *args, **kwargs):
     if request.method == 'GET':
         return render(request, 'tour/detail.html', {"obj": obj,
                                                     "form": TourForm(obj)
-                                                    }
-                      )
+                                                    })
 
     elif request.method == 'POST':
         obj = Tours.objects.filter(pk=kwargs['pk']).first()
@@ -43,14 +42,39 @@ def detail_view(request, *args, **kwargs):
             return render(request, 'tour/detail.html', {"obj": obj, "form": form})
 
 
-def result(request):
-    print(request)
-    return 200
+def failure(request):
+    order_id = request.GET.get('pg_order_id')
+    if order_id is None:
+        return HttpResponseRedirect(reverse('tours:home'))
+    payment_id = request.GET.get('pg_payment_id')
+    salt = request.GET.get('pg_salt')
+    sig = request.GET.get('pg_sig')
 
+    application = Application.objects.filter(id=order_id).first()
 
-def check(request):
-    print(request)
-    return 200
+    payment = Payment.objects.filter(application=application).first()
+    if payment is not None:
+        messages.success(request, _('Ваш билет не прошел оплату, проверьте email'))
+    else:
+        payment = Payment.objects.create(tour=application.tour,
+                                         application=application,
+                                         status=PaymentChoice.FAILURE,
+                                         pg_salt=salt,
+                                         pg_sig=sig,
+                                         payment_id=payment_id)
+        payment.save()
+        messages.success(request, _('Ошибка при оплате, проверьте почту'))
+
+    html_content = render_to_string('pages/email_failure.html', {"payment": payment})
+    text_content = strip_tags(html_content)
+    msg = EmailMultiAlternatives(subject=_("Ошибка при оплате билета на тур {}").format(payment.tour.city),
+                                 body=text_content,
+                                 from_email=settings.EMAIL_HOST_USER,
+                                 to=[payment.application.email])
+
+    msg.attach_alternative(html_content, "text/html")
+    msg.send()
+    return render(request, "tour/failure.html", {"payment": payment})
 
 
 def success(request, *args, **kwargs):

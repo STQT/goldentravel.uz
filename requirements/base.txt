@@ -17,3 +17,5 @@ crispy-bootstrap5==0.6  # https://github.com/django-crispy-forms/crispy-bootstra
 django-redis==5.2.0  # https://github.com/jazzband/django-redis
 python-dotenv==0.20.0
 lxml==4.9.1 # https://github.com/lxml/lxml
+beautifulsoup4==4.11.1  # https://github.com/crummy/beautifulsoup4
+django_ckeditor==6.5.0

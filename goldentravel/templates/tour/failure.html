@@ -5,10 +5,8 @@
   <div class="container">
     <div class="row">
       <div class="col-md-6 col-sm-6 offset-md-3 offset-sm-3">
-        <h1 style="color: green;"><b>{% trans "Успешно оплачено✅" %}</b></h1>
-        <h3>{% blocktrans %} Детали по вашим покупкам отправлены в почту {% endblocktrans %}</h3>
-        <p><b>{{ payment.application.fullname }}, </b>{% blocktrans %}пожалуйста проверьте почту:{% endblocktrans %}
-         {{ payment.application.email }} </p>
+        <h1 style="color: red;"><b>{% trans "Ошибка в оплате" %}</b></h1>
+        <h3>{% blocktrans %} Пожалуйста, попробуйте позже {% endblocktrans %}</h3>
         <!-- Creating a button -->
         <div class="align-center">{% blocktrans %}Вы автоматически перенаправитесь в главную страницу через 5 секунд
         {% endblocktrans %}</div>

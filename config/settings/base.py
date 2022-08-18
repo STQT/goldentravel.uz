@@ -79,7 +79,7 @@ THIRD_PARTY_APPS = [
     "allauth",
     "allauth.account",
     "allauth.socialaccount",
-
+    "ckeditor",
 ]
 
 LOCAL_APPS = [
@@ -296,3 +296,6 @@ MESSAGE_TAGS = {
         messages.WARNING: 'alert-warning',
         messages.ERROR: 'alert-danger',
  }
+CKEDITOR_FILENAME_GENERATOR = 'goldentravel.utils.ckeditor_filename.get_filename'
+CKEDITOR_UPLOAD_PATH = 'uploads/'
+CKEDITOR_IMAGE_BACKEND="pillow"

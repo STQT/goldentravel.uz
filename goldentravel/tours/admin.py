@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.utils.safestring import mark_safe
 
-from .models import Tours, TourShots, TourBanner
+from .models import Tours, TourShots, TourBanner, ToursFeatures
 
 
 class TourShotsInline(admin.TabularInline):
@@ -13,6 +13,11 @@ class TourShotsInline(admin.TabularInline):
         return mark_safe(f'<img src={obj.image.url} width="100" height="110"')
 
     get_image.short_description = "Изображение"
+
+
+class TourFeatures(admin.TabularInline):
+    model = ToursFeatures
+    extra = 0
 
 
 class TourBannerInline(admin.TabularInline):
@@ -28,7 +33,7 @@ class TourBannerInline(admin.TabularInline):
 
 @admin.register(Tours)
 class TourAdmin(admin.ModelAdmin):
-    inlines = [TourShotsInline, TourBannerInline]
+    inlines = [TourShotsInline, TourBannerInline, TourFeatures]
 
 
 @admin.register(TourShots)

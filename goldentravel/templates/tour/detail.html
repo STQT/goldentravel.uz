@@ -19,6 +19,7 @@
             {{ obj.description }}
           </span>
         </div>
+
         <div class="slides row">
           {% for shot in obj.shots.all %}
             <img class="col-1"
@@ -27,9 +28,45 @@
           {% endfor %}
         </div>
       </div>
-      <div class="row">
+      {% with obj.features.all as features %}
+        {% if features %}
+          <div class="row">
+            <div class="col-12 p-3">
+              <div class="col-md-4 offset-md-5 fw fw-bold p-3">{% trans 'Дополнительные информации' %}</div>
+            </div>
+            {% for feature in features %}
+              <div class="col-8 p-1">
+                <div class="p-3 border bg-light text-center">{{ feature.title }}</div>
+              </div>
+              <div class="col-4 p-1">
+                <div class="p-3 border bg-light text-center">{{ feature.means }}</div>
+              </div>
+            {% endfor %}
+          </div>
+        {% endif %}
+      {% endwith %}
+      <div class="row gy-5">
         <div class="col-md-4 offset-md-4">
+          <div class="col-md-8 offsed-md-2 p-3">{% trans "Стоимость:" %}
+            <b>{{ obj.amount }}</b> {{ obj.get_currency_display }}</div>
           <div class="fs-2 offset-md-3">{% trans "Купить тур" %}</div>
+          <ul>
+            <li class="card__item">
+              <img src="{% static 'svg/uzcard.svg' %}" alt="">
+            </li>
+            <li class="card__item">
+              <img src="{% static 'svg/humo.svg' %}" alt="">
+            </li>
+            <li class="card__item">
+              <img src="{% static 'svg/union.svg' %}" alt="">
+            </li>
+            <li class="card__item">
+              <img src="{% static 'svg/visa.svg' %}" alt="">
+            </li>
+            <li class="card__item">
+              <img src="{% static 'svg/mastercard.svg' %}" alt="">
+            </li>
+          </ul>
           {% crispy form %}
           {% for message in messages %}
             <div class="container-fluid p-0">

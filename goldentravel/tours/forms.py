@@ -1,7 +1,8 @@
 from crispy_forms.helper import FormHelper
-from crispy_forms.layout import Submit, Field
+from crispy_forms.layout import Submit, Button
 from django import forms
-from django.urls import reverse_lazy
+from django.urls import reverse_lazy, reverse
+from django.utils.translation import gettext_lazy as _
 
 
 class TourForm(forms.Form):
@@ -12,6 +13,13 @@ class TourForm(forms.Form):
         self.helper.form_action = reverse_lazy('tours:detail', kwargs={'pk': obj.pk})
         self.helper.form_method = 'POST'
         self.helper.add_input(Submit('submit', "Submit"))
+        self.helper.add_input(Button('cancel', _('Публичная офферта'), css_class='btn-gray',
+                                     onclick="window.location.href = '{}';".format(reverse('public_offer'))))
 
     fullname = forms.CharField(max_length=100)
     email = forms.EmailField()
+    offer_check = forms.BooleanField(error_messages={'required': _('Пожалуйста, прочтите и примите'
+                                                                   'публичную офферту'), })
+
+    class Meta:
+        labels = {"offer_check": "Qale ishlar" }

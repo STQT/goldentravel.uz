@@ -637,3 +637,9 @@ nav .list .delete {
   object-fit: cover;
   cursor: pointer;
 }
+
+.card__item {
+  display: inline-block;
+  height: 25px;
+  margin-right: 10px;
+}
