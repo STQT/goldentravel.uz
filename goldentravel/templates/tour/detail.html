@@ -4,6 +4,11 @@
 
 {% block title %} {{ obj.title }} {% endblock %}
 
+{% block extra_head %}
+  <script type="text/javascript" src="{% static "ckeditor/ckeditor-init.js" %}"></script>
+  <script type="text/javascript" src="{% static "ckeditor/ckeditor/ckeditor.js" %}"></script>
+{% endblock %}
+
 {% block content %}
   <section>
     <div class="container">
@@ -16,7 +21,7 @@
         <div class="col-md-6 col-sm-10">
           <div class="fw-bold fs-2">{{ obj.title }}</div>
           <span>
-            {{ obj.description }}
+            {{ obj.description|safe }}
           </span>
         </div>
 
